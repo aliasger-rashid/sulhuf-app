@@ -8,12 +8,13 @@ import React, { useEffect } from "react"
 import { useColorScheme } from "react-native"
 import { NavigationContainer, DefaultTheme, DarkTheme } from "@react-navigation/native"
 import { createNativeStackNavigator } from "@react-navigation/native-stack"
-import { WelcomeScreen, DemoScreen, DemoListScreen, SplashScreen } from "../screens"
+import { SplashScreen } from "../screens"
 import { navigationRef, useBackButtonHandler } from "./navigation-utilities"
 import { useAppSelector } from "../hooks"
 import { restoreSplash } from "../redux/actions/common-action"
 import { useDispatch } from "react-redux"
 import { SPLASH_TIMEOUT } from "../utils/constant"
+import { AuthStack } from "./auth-stack/auth-navigator"
 
 /**
  * This type allows TypeScript to know what routes are defined in this navigator
@@ -24,10 +25,8 @@ import { SPLASH_TIMEOUT } from "../utils/constant"
  *   https://reactnavigation.org/docs/typescript#type-checking-the-navigator
  */
 export type NavigatorParamList = {
-  welcome: undefined
-  demo: undefined
-  demoList: undefined
   SplashScreen: undefined
+  AuthStack: undefined
 }
 
 // Documentation: https://reactnavigation.org/docs/stack-navigator/
@@ -54,9 +53,7 @@ const AppStack = () => {
         <Stack.Screen name="SplashScreen" component={SplashScreen} />
       ) : (
         <>
-          <Stack.Screen name="welcome" component={WelcomeScreen} />
-          <Stack.Screen name="demo" component={DemoScreen} />
-          <Stack.Screen name="demoList" component={DemoListScreen} />
+          <Stack.Screen name="AuthStack" component={AuthStack} />
         </>
       )}
     </Stack.Navigator>

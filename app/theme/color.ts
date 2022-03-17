@@ -39,7 +39,7 @@ export const color = {
   /**
    * The default color of text in many components.
    */
-  text: palette.white,
+  text: palette.black,
   /**
    * Secondary information.
    */
@@ -48,6 +48,7 @@ export const color = {
    * Error messages and icons.
    */
   error: palette.angry,
+  grey: "#374151",
 
   /**
    * Storybook background for Text stories, or any stories where

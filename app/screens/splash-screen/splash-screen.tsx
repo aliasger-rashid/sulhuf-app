@@ -6,7 +6,7 @@ import { color, flexStyles } from "../../theme"
 export const SplashScreen = () => {
   return (
     <View style={styles.container}>
-      <Text text="Welcome to BaseApp" style={styles.text} preset="header" />
+      <Text text="Welcome to Sulhuf App" style={styles.text} preset="header" />
     </View>
   )
 }

@@ -60,6 +60,9 @@ export interface TextFieldProps extends TextInputProps {
   preset?: keyof typeof PRESETS
 
   forwardedRef?: any
+  fieldName?: string
+  touched?: any // TODO: Find erros props of formik and add
+  errors?: any // TODO: Find erros props of formik and add
 }
 
 /**
@@ -75,6 +78,9 @@ export function TextField(props: TextFieldProps) {
     style: styleOverride,
     inputStyle: inputStyleOverride,
     forwardedRef,
+    touched,
+    errors,
+    fieldName,
     ...rest
   } = props
 
@@ -93,6 +99,9 @@ export function TextField(props: TextFieldProps) {
         style={inputStyles}
         ref={forwardedRef}
       />
+      {touched?.[fieldName] && errors?.[fieldName] && typeof errors?.[fieldName] === "string" && (
+        <Text text={errors?.[fieldName]} preset="error" />
+      )}
     </View>
   )
 }

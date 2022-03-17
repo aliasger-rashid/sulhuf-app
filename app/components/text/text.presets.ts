@@ -40,6 +40,13 @@ export const presets = {
    * A smaller piece of secondary information.
    */
   secondary: { ...BASE, fontSize: 9, color: color.dim } as TextStyle,
+
+  error: {
+    ...BASE,
+    fontSize: 12,
+    color: color.error,
+    textAlign: "left",
+  },
 }
 
 /**

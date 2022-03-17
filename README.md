@@ -1,7 +1,3 @@
-# Welcome to your new 10Xers React Native app!
-
-## The latest and greatest boilerplate for 10xers opinions
-
 Currently includes:
 
 - React Native
@@ -14,7 +10,7 @@ Currently includes:
 
 ## Quick Start
 
-The 10Xers boilerplate project's structure will look similar to this:
+The boilerplate project's structure will look similar to this:
 
 ```
 ignite-project
