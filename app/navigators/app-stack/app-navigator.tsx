@@ -1,28 +1,76 @@
 import * as React from "react"
 import { NavigatorScreenParams } from "@react-navigation/native"
-import { createNativeStackNavigator } from "@react-navigation/native-stack"
 import { DemoScreen } from "../../screens"
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
+import FontAwesome from "react-native-vector-icons/FontAwesome"
+import Ionicons from "react-native-vector-icons/Ionicons"
+
+import { color } from "../../theme"
 
 export type HomeNavigatorParamList = {
   HomeScreen: undefined
 }
 
 export type AppStackNavigatorParamList = {
-  Home: NavigatorScreenParams<HomeNavigatorParamList>
+  ItemRequest: NavigatorScreenParams<HomeNavigatorParamList>
+  Orders: undefined
+  Settings: undefined
 }
-
-const Stack = createNativeStackNavigator<AppStackNavigatorParamList>()
+const Tab = createBottomTabNavigator<AppStackNavigatorParamList>()
 
 export const AppStack = () => {
   return (
-    <Stack.Navigator>
-      <Stack.Screen
-        name="Home"
+    <Tab.Navigator
+      initialRouteName="ItemRequest"
+      screenOptions={{
+        tabBarActiveTintColor: color.primaryDarker,
+        tabBarStyle: {
+          borderTopWidth: 1,
+        },
+      }}
+    >
+      <Tab.Screen
+        name="ItemRequest"
         component={DemoScreen}
         options={{
-          headerShown: false,
+          tabBarLabel: "Item Request",
+          tabBarIcon: ({ focused }) => (
+            <FontAwesome
+              name="home"
+              size={30}
+              color={focused ? color.primaryDarker : color.primary}
+            />
+          ),
         }}
       />
-    </Stack.Navigator>
+      <Tab.Screen
+        name="Orders"
+        component={DemoScreen}
+        options={{
+          tabBarLabel: "Orders",
+          tabBarIcon: ({ focused }) => (
+            <FontAwesome
+              name="suitcase"
+              size={30}
+              color={focused ? color.primaryDarker : color.primary}
+            />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Settings"
+        component={DemoScreen}
+        options={{
+          tabBarLabel: "Settings",
+          tabBarIcon: ({ focused }) => (
+            <Ionicons
+              name="settings-sharp"
+              size={30}
+              color={focused ? color.primaryDarker : color.primary}
+            />
+          ),
+        }}
+      />
+    </Tab.Navigator>
   )
 }

@@ -15,6 +15,7 @@ target 'sulhuf' do
     :path => config[:reactNativePath],
     :hermes_enabled => podfile_properties['expo.jsEngine'] == 'hermes'
   )
+  pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
 
   target 'sulhufTests' do
     inherit! :complete

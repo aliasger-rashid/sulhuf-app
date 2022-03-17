@@ -14,7 +14,7 @@ const persistConfig = {
   key: "root",
   storage: AsyncStorage,
   // Add Redux reducers to be whitelisted here
-  whitelist: [], // only reduxer added here  will be persisted
+  whitelist: ["userInfo"], // only reducer added here  will be persisted
 }
 
 // TODO: Add "redux-persist" if redux data is needed to be persisted.
