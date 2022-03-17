@@ -16,8 +16,6 @@ export const loginService = async (username, password): Promise<any> => {
     // the typical ways to die when calling an api
     if (!response.ok) {
       const problem: any = getGeneralApiProblem(response)
-      console.log(response)
-
       toastWrapper(problem?.message)
       if (problem) return problem
     }

@@ -6,8 +6,6 @@ export const loginUser = (username, password) => async (dispatch) => {
   showLoader()
   const result = await loginService(username, password)
   hideLoader()
-  console.log({ result })
-
   if (result?.kind === "ok") {
     dispatch({
       type: LOGIN_USER,

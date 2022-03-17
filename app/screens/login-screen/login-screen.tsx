@@ -18,7 +18,6 @@ export const LoginScreen = () => {
   })
 
   const onSubmit = (values) => {
-    console.log({ values })
     dispatch(loginUser(values.username, values.password))
   }
   return (

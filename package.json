@@ -206,6 +206,7 @@
       "no-unused-vars": 0,
       "no-use-before-define": "off",
       "quotes": 0,
+      "no-console": 1,
       "react-native/no-raw-text": 0,
       "react/no-unescaped-entities": 0,
       "react/prop-types": "off",
