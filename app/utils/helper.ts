@@ -1,3 +1,4 @@
+import Toast from "react-native-root-toast"
 import { loadLocale } from "../i18n"
 import { load, save } from "./storage"
 
@@ -17,5 +18,12 @@ export const changeLanguage = (language) => {
 export const getLanguage = () => {
   load(LanguageKey).then((value) => {
     return value
+  })
+}
+
+export const toastWrapper = (message) => {
+  Toast.show(message, {
+    position: Toast.positions.TOP,
+    duration: Toast.durations.LONG,
   })
 }

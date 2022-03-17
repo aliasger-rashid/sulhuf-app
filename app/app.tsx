@@ -18,6 +18,7 @@ import * as storage from "./utils/storage"
 import { AppNavigator, useNavigationPersistence } from "./navigators"
 import { ErrorBoundary } from "./screens/error/error-boundary"
 import { store, persistor } from "./models"
+import { RootSiblingParent } from "react-native-root-siblings"
 
 import { Provider } from "react-redux"
 import { PersistGate } from "redux-persist/integration/react"
@@ -59,10 +60,12 @@ function App() {
       <PersistGate loading={null} persistor={persistor}>
         <SafeAreaProvider initialMetrics={initialWindowMetrics}>
           <ErrorBoundary catchErrors={"always"}>
-            <AppNavigator
-              initialState={initialNavigationState}
-              onStateChange={onNavigationStateChange}
-            />
+            <RootSiblingParent>
+              <AppNavigator
+                initialState={initialNavigationState}
+                onStateChange={onNavigationStateChange}
+              />
+            </RootSiblingParent>
           </ErrorBoundary>
         </SafeAreaProvider>
       </PersistGate>

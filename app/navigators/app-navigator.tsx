@@ -15,6 +15,7 @@ import { restoreSplash } from "../redux/actions/common-action"
 import { useDispatch } from "react-redux"
 import { SPLASH_TIMEOUT } from "../utils/constant"
 import { AuthStack } from "./auth-stack/auth-navigator"
+import { AppStack } from "./app-stack/app-navigator"
 
 /**
  * This type allows TypeScript to know what routes are defined in this navigator
@@ -27,13 +28,16 @@ import { AuthStack } from "./auth-stack/auth-navigator"
 export type NavigatorParamList = {
   SplashScreen: undefined
   AuthStack: undefined
+  AppStack: undefined
 }
 
 // Documentation: https://reactnavigation.org/docs/stack-navigator/
 const Stack = createNativeStackNavigator<NavigatorParamList>()
 
-const AppStack = () => {
+const RootStack = () => {
   const { loading } = useAppSelector(({ common }) => common)
+  const { user } = useAppSelector(({ userInfo }) => userInfo)
+
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -53,7 +57,11 @@ const AppStack = () => {
         <Stack.Screen name="SplashScreen" component={SplashScreen} />
       ) : (
         <>
-          <Stack.Screen name="AuthStack" component={AuthStack} />
+          {user ? (
+            <Stack.Screen name="AppStack" component={AppStack} />
+          ) : (
+            <Stack.Screen name="AuthStack" component={AuthStack} />
+          )}
         </>
       )}
     </Stack.Navigator>
@@ -71,7 +79,7 @@ export const AppNavigator = (props: NavigationProps) => {
       theme={colorScheme === "dark" ? DarkTheme : DefaultTheme}
       {...props}
     >
-      <AppStack />
+      <RootStack />
     </NavigationContainer>
   )
 }

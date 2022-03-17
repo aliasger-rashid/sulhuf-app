@@ -6,9 +6,12 @@ import * as Yup from "yup"
 
 import { Button, Text, TextField } from "../../components"
 import { spacing, color } from "../../theme"
+import { useDispatch } from "react-redux"
+import { loginUser } from "../../redux/actions/user-action"
 const BackgroundImage = require("../../../assets/images/login-background.png")
 
 export const LoginScreen = () => {
+  const dispatch = useDispatch()
   const validationSchema = Yup.object().shape({
     username: Yup.string().required("Username is required"),
     password: Yup.string().required("Please enter your password"),
@@ -16,6 +19,7 @@ export const LoginScreen = () => {
 
   const onSubmit = (values) => {
     console.log({ values })
+    dispatch(loginUser(values.username, values.password))
   }
   return (
     <View style={styles.container}>

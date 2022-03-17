@@ -51,6 +51,7 @@
     "react-native-gesture-handler": "1.10.3",
     "react-native-keychain": "6.2.0",
     "react-native-restart": "^0.0.23",
+    "react-native-root-siblings": "^4.1.1",
     "react-native-root-toast": "^3.3.0",
     "react-native-safe-area-context": "3.1.8",
     "react-native-screens": "3.8.0",
