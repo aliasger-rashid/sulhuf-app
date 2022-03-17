@@ -1,11 +1,12 @@
 import React from "react"
-import { StyleSheet, View, KeyboardAvoidingView, Platform } from "react-native"
+import { StyleSheet, View, KeyboardAvoidingView, Platform, ImageBackground } from "react-native"
 import { BlurView } from "expo-blur"
 import { Formik } from "formik"
 import * as Yup from "yup"
 
 import { Button, Text, TextField } from "../../components"
 import { spacing, color } from "../../theme"
+const BackgroundImage = require("../../../assets/images/login-background.png")
 
 export const LoginScreen = () => {
   const validationSchema = Yup.object().shape({
@@ -18,59 +19,61 @@ export const LoginScreen = () => {
   }
   return (
     <View style={styles.container}>
-      <Formik
-        initialValues={{
-          username: "",
-          password: "",
-        }}
-        validationSchema={validationSchema}
-        onSubmit={onSubmit}
-      >
-        {({ handleChange, handleSubmit, values, touched, errors }) => (
-          <KeyboardAvoidingView
-            behavior={Platform.OS === "ios" ? "padding" : "height"}
-            style={styles.innerContainer}
-          >
-            <BlurView intensity={75} tint="light" style={styles.blurContainer}>
-              <View style={styles.formContainer}>
-                <Text
-                  text="Login"
-                  preset="header"
-                  color={color.palette.black}
-                  style={styles.headerStyle}
-                />
-                <TextField
-                  label="Username"
-                  placeholder="Username"
-                  value={values.username}
-                  onChangeText={handleChange("username")}
-                  autoCapitalize="none"
-                  fieldName="username"
-                  {...{ touched, errors }}
-                />
-                <TextField
-                  label="Password"
-                  secureTextEntry
-                  placeholder="Password"
-                  value={values.password}
-                  onChangeText={handleChange("password")}
-                  textContentType="password"
-                  autoCapitalize="none"
-                  fieldName="password"
-                  {...{ touched, errors }}
-                />
+      <ImageBackground source={BackgroundImage} style={styles.backgroundImage}>
+        <Formik
+          initialValues={{
+            username: "",
+            password: "",
+          }}
+          validationSchema={validationSchema}
+          onSubmit={onSubmit}
+        >
+          {({ handleChange, handleSubmit, values, touched, errors }) => (
+            <KeyboardAvoidingView
+              behavior={Platform.OS === "ios" ? "padding" : "height"}
+              style={styles.innerContainer}
+            >
+              <BlurView intensity={75} tint="light" style={styles.blurContainer}>
+                <View style={styles.formContainer}>
+                  <Text
+                    text="Login"
+                    preset="header"
+                    color={color.palette.black}
+                    style={styles.headerStyle}
+                  />
+                  <TextField
+                    label="Username"
+                    placeholder="Username"
+                    value={values.username}
+                    onChangeText={handleChange("username")}
+                    autoCapitalize="none"
+                    fieldName="username"
+                    {...{ touched, errors }}
+                  />
+                  <TextField
+                    label="Password"
+                    secureTextEntry
+                    placeholder="Password"
+                    value={values.password}
+                    onChangeText={handleChange("password")}
+                    textContentType="password"
+                    autoCapitalize="none"
+                    fieldName="password"
+                    {...{ touched, errors }}
+                  />
 
-                <Button
-                  text="Login"
-                  onPress={() => handleSubmit()}
-                  preset={"primary"}
-                  style={styles.buttonStyle}
-                />
-              </View>
-            </BlurView>
-          </KeyboardAvoidingView>
-        )}
-      </Formik>
+                  <Button
+                    text="Login"
+                    onPress={() => handleSubmit()}
+                    preset={"primary"}
+                    style={styles.buttonStyle}
+                  />
+                </View>
+              </BlurView>
+            </KeyboardAvoidingView>
+          )}
+        </Formik>
+      </ImageBackground>
     </View>
   )
 }
@@ -78,6 +81,7 @@ export const LoginScreen = () => {
 export default LoginScreen
 
 const styles = StyleSheet.create({
+  backgroundImage: { height: "100%", width: "100%" },
   blurContainer: {
     borderRadius: 10,
     marginHorizontal: spacing[3],

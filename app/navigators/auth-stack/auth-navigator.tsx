@@ -16,7 +16,13 @@ const AuthenticationStack = createNativeStackNavigator<AuthStackNavigatorParamLi
 export const AuthStack = () => {
   return (
     <AuthenticationStack.Navigator>
-      <AuthenticationStack.Screen name="Login" component={LoginScreen} />
+      <AuthenticationStack.Screen
+        name="Login"
+        component={LoginScreen}
+        options={{
+          headerShown: false,
+        }}
+      />
     </AuthenticationStack.Navigator>
   )
 }
