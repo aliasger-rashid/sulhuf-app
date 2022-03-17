@@ -1,9 +1,9 @@
 {
-  "name": "BaseApp",
-  "displayName": "BaseApp",
+  "name": "sulhuf",
+  "displayName": "sulhuf",
   "expo": {
-    "name": "BaseApp",
-    "slug": "BaseApp",
+    "name": "sulhuf",
+    "slug": "sulhuf",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",

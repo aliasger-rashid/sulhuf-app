@@ -7,7 +7,7 @@ platform :ios, '12.0'
 require 'json'
 podfile_properties = JSON.parse(File.read('./Podfile.properties.json')) rescue {}
 
-target 'BaseApp' do
+target 'sulhuf' do
   use_expo_modules!
   config = use_native_modules!
 
@@ -16,7 +16,7 @@ target 'BaseApp' do
     :hermes_enabled => podfile_properties['expo.jsEngine'] == 'hermes'
   )
 
-  target 'BaseAppTests' do
+  target 'sulhufTests' do
     inherit! :complete
     # Pods for testing
   end

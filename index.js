@@ -10,5 +10,5 @@
 import App from "./app/app.tsx"
 import { AppRegistry } from "react-native"
 
-AppRegistry.registerComponent("BaseApp", () => App)
+AppRegistry.registerComponent("sulhuf", () => App)
 export default App
