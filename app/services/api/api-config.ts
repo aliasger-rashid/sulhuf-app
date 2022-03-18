@@ -28,4 +28,7 @@ export const DEFAULT_API_CONFIG: ApiConfig = {
 
 export const APIRoutes = {
   Login: "auth/local",
+  Items: "item-requests",
+  Orders: "orders",
+  Upload: "upload",
 }

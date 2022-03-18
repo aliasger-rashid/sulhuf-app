@@ -1,6 +1,6 @@
 import { hideLoader, showLoader } from "../../components/atoms/loader/loader"
 import { loginService } from "../../services/auth-services/auth-services"
-import { LOGIN_USER } from "./action-types"
+import { LOGIN_USER, RESET } from "./action-types"
 
 export const loginUser = (username, password) => async (dispatch) => {
   showLoader()
@@ -12,4 +12,10 @@ export const loginUser = (username, password) => async (dispatch) => {
       payload: result?.data,
     })
   }
+}
+
+export const logoutUser = () => async (dispatch) => {
+  dispatch({
+    type: RESET,
+  })
 }
