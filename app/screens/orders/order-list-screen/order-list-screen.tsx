@@ -9,17 +9,19 @@ import { OrderCard } from "./order-card"
 
 export const OrderListScreen = () => {
   const dispatch = useDispatch()
-  const { orderList, orderCount } = useAppSelector((state) => state.orders)
+  const { orderList, orderCount, isLoadingList } = useAppSelector((state) => state.orders)
 
   useEffect(() => {
-    dispatch(getOrdersCount("delivered"))
-    dispatch(getOrdersCount("cancelled"))
-
     if (orderList.length === 0) {
       dispatch(getAllOrders())
     }
+    dispatch(getOrdersCount("delivered"))
+    dispatch(getOrdersCount("cancelled"))
   }, [])
 
+  const handleLoadMore = () => {
+    dispatch(getAllOrders(orderList.length + 1))
+  }
   return (
     <View style={styles.container}>
       <View>
@@ -30,6 +32,10 @@ export const OrderListScreen = () => {
         keyExtractor={(item) => item.id}
         data={orderList}
         renderItem={({ item }) => <OrderCard {...{ item }} />}
+        scrollEnabled={!isLoadingList}
+        onEndReached={handleLoadMore}
+        onEndReachedThreshold={0}
+        refreshing={isLoadingList}
       />
     </View>
   )

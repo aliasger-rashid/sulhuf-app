@@ -3,11 +3,15 @@ import {
   getAllOrdersService,
   getOrderCountService,
 } from "../../services/order-services/order-services"
-import { GET_ALL_ORDERS, GET_ORDER_COUNT } from "./action-types"
+import { GET_ALL_ORDERS, GET_ORDER_COUNT, SET_ORDER_LIST_LOADING } from "./action-types"
 
-export const getAllOrders = () => async (dispatch) => {
+export const getAllOrders = (start = 0) => async (dispatch) => {
   showLoader()
-  const result = await getAllOrdersService()
+  dispatch({
+    type: SET_ORDER_LIST_LOADING,
+    payload: true,
+  })
+  const result = await getAllOrdersService(start)
   hideLoader()
   if (result?.kind === "ok") {
     dispatch({
@@ -15,6 +19,10 @@ export const getAllOrders = () => async (dispatch) => {
       payload: result?.data,
     })
   }
+  dispatch({
+    type: SET_ORDER_LIST_LOADING,
+    payload: false,
+  })
 }
 
 export const getOrdersCount = (status: string) => async (dispatch) => {
