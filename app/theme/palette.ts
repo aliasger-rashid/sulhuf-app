@@ -8,5 +8,5 @@ export const palette = {
   lighterGrey: "#CDD4DA",
   angry: "#dd3333",
   deepPurple: "#5D2555",
-  cardShadow: "#000000",
+  cardShadow: "#4C4C7312",
 }

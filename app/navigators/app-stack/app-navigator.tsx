@@ -34,6 +34,7 @@ export const AppStack = () => {
         component={ItemsListScreen}
         options={{
           tabBarLabel: "Item Request",
+          headerTitle: "Item Request",
           tabBarIcon: ({ focused }) => (
             <FontAwesome
               name="home"
