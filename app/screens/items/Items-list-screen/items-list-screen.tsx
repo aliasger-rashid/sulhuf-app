@@ -1,6 +1,6 @@
 import React, { useEffect } from "react"
 import { useDispatch } from "react-redux"
-import { FlatList, StyleSheet, Text, View } from "react-native"
+import { FlatList, StyleSheet, View } from "react-native"
 
 import { getAllItems } from "../../../redux/actions/items-action"
 import { useAppSelector } from "../../../hooks"

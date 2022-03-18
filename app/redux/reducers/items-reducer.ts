@@ -1,8 +1,7 @@
-import { GET_ALL_ITEMS } from "./../actions/action-types"
 /* eslint-disable consistent-return */
 /* eslint-disable no-param-reassign */
 import produce from "immer"
-import { RESET } from "../actions/action-types"
+import { CREATE_ITEM, GET_ALL_ITEMS, RESET } from "./../actions/action-types"
 
 interface INIT_STATE_TYPE {
   items: any[]
@@ -18,6 +17,11 @@ export default produce((draft, action) => {
     case GET_ALL_ITEMS:
       draft.items = action.payload
       break
+
+    case CREATE_ITEM:
+      draft.items = [...draft.items, action.payload]
+      break
+
     case RESET:
       return INIT_STATE // Always return the initial state
     default:

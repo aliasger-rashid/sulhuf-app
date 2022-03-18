@@ -1,13 +1,7 @@
 /* eslint-disable consistent-return */
 /* eslint-disable no-param-reassign */
 import produce from "immer"
-import {
-  FETCH_ERROR,
-  FETCH_START,
-  FETCH_SUCCESS,
-  RESET,
-  RESTORE_SPLASH,
-} from "../actions/action-types"
+import { FETCH_ERROR, FETCH_START, FETCH_SUCCESS, RESTORE_SPLASH } from "../actions/action-types"
 
 const INIT_STATE = {
   loading: true,
@@ -31,9 +25,6 @@ export default produce((draft, action) => {
         loading: false,
       }
     }
-
-    case RESET:
-      return INIT_STATE // Always return the initial state
     default:
       return draft
   }

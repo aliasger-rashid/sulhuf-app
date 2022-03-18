@@ -1,11 +1,12 @@
 import * as React from "react"
 import { NavigatorScreenParams } from "@react-navigation/native"
-import { ItemsListScreen, OrderListScreen, SettingsScreen } from "../../screens"
+import { OrderListScreen, SettingsScreen } from "../../screens"
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
 import FontAwesome from "react-native-vector-icons/FontAwesome"
 import Ionicons from "react-native-vector-icons/Ionicons"
 
 import { color } from "../../theme"
+import { ItemStackNavigator } from "./item-stack-navigator"
 
 export type HomeNavigatorParamList = {
   HomeScreen: undefined
@@ -31,10 +32,10 @@ export const AppStack = () => {
     >
       <Tab.Screen
         name="ItemRequest"
-        component={ItemsListScreen}
-        options={{
+        component={ItemStackNavigator}
+        options={() => ({
           tabBarLabel: "Item Request",
-          headerTitle: "Item Request",
+          headerShown: false,
           tabBarIcon: ({ focused }) => (
             <FontAwesome
               name="home"
@@ -42,7 +43,7 @@ export const AppStack = () => {
               color={focused ? color.primaryDarker : color.primary}
             />
           ),
-        }}
+        })}
       />
       <Tab.Screen
         name="Orders"

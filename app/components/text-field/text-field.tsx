@@ -6,7 +6,9 @@ import { Text } from "../text/text"
 
 // the base styling for the container
 const CONTAINER: ViewStyle = {
-  paddingVertical: spacing[3],
+  paddingVertical: spacing[2],
+  borderBottomWidth: 1,
+  borderColor: color.grey,
 }
 
 // the base styling for the TextInput

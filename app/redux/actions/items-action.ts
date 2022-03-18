@@ -6,6 +6,7 @@ import {
 } from "./../../services/items-services/items-services"
 import { hideLoader, showLoader } from "../../components/atoms/loader/loader"
 import { CREATE_ITEM, GET_ALL_ITEMS, GET_ITEM, UPDATE_ITEM } from "./action-types"
+import { navigate } from "../../navigators"
 
 export const createItem = (item) => async (dispatch) => {
   showLoader()
@@ -16,6 +17,7 @@ export const createItem = (item) => async (dispatch) => {
       type: CREATE_ITEM,
       payload: result?.data,
     })
+    navigate("ItemList")
   }
 }
 
