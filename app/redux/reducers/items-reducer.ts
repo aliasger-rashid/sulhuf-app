@@ -1,7 +1,5 @@
-/* eslint-disable consistent-return */
-/* eslint-disable no-param-reassign */
+import { CREATE_ITEM, GET_ALL_ITEMS, RESET, UPDATE_ITEM } from "./../actions/action-types"
 import produce from "immer"
-import { CREATE_ITEM, GET_ALL_ITEMS, RESET } from "./../actions/action-types"
 
 interface INIT_STATE_TYPE {
   items: any[]
@@ -22,8 +20,15 @@ export default produce((draft, action) => {
       draft.items = [...draft.items, action.payload]
       break
 
+    case UPDATE_ITEM: {
+      const index = draft.items.findIndex((item) => item?.id === action.payload?.id)
+      draft.items[index] = action.payload
+      break
+    }
+
     case RESET:
       return INIT_STATE // Always return the initial state
+
     default:
       return draft
   }

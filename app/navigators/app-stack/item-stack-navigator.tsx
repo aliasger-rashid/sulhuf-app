@@ -1,14 +1,16 @@
 import React from "react"
-import { createNativeStackNavigator } from "@react-navigation/native-stack"
+import { createNativeStackNavigator, NativeStackScreenProps } from "@react-navigation/native-stack"
 import { StyleSheet, TouchableOpacity } from "react-native"
 import AntDesign from "react-native-vector-icons/AntDesign"
 import { ItemsDetailsScreen, ItemsListScreen } from "../../screens"
 import { spacing } from "../../theme"
+import { ItemsType } from "../../services/items-services/items-services-types"
 
 export type ItemStackParamList = {
   ItemList: undefined
-  ItemDetails: undefined
+  ItemDetails: { item?: ItemsType }
 }
+export type ItemListScreenScreenProps = NativeStackScreenProps<ItemStackParamList, "ItemList">
 
 // Documentation: https://reactnavigation.org/docs/stack-navigator/
 const ItemStack = createNativeStackNavigator<ItemStackParamList>()

@@ -1,26 +1,52 @@
-import React from "react"
+import React, { useEffect, useRef } from "react"
 import { StyleSheet, View } from "react-native"
 import * as Yup from "yup"
-import { Formik } from "formik"
+import { Formik, FormikProps } from "formik"
 import { useDispatch } from "react-redux"
 import { color, spacing } from "../../../theme"
 import { Button, TextField } from "../../../components"
-import { createItem } from "../../../redux/actions/items-action"
+import { createItem, updateItem } from "../../../redux/actions/items-action"
+import { ItemsType } from "../../../services/items-services/items-services-types"
 
-export const ItemsDetailsScreen = () => {
+export const ItemsDetailsScreen = ({ route }) => {
   const dispatch = useDispatch()
+  const formikRef = useRef<FormikProps<any>>()
 
-  const validationSchema = Yup.object().shape({
-    name: Yup.string().required("Name is required"),
-    brand: Yup.string().required("Brand is required"),
-    pharmacySKU: Yup.string().required("Pharmacy SKU is required"),
-    pharmacyCompany: Yup.string().required("Pharmacy Company is required"),
-    size: Yup.string().required("Size is required"),
-    UPC: Yup.string().required("UP is required"),
-  })
+  const item = route.params?.item
+  useEffect(() => {
+    if (item) {
+      formikRef.current.setFieldValue("name", item?.name)
+      formikRef.current.setFieldValue("brand", item?.brand)
+      formikRef.current.setFieldValue("pharmacySKU", item?.pharmacySKU)
+      formikRef.current.setFieldValue("pharmacyCompany", item?.pharmacyCompany)
+      formikRef.current.setFieldValue("size", item?.size)
+      formikRef.current.setFieldValue("logo", item?.logo)
+      formikRef.current.setFieldValue("UPC", item?.UPC)
+    }
+  }, [item])
+
+  const getValidationSchema = () => {
+    if (!item) {
+      return Yup.object().shape({
+        name: Yup.string().required("Name is required"),
+        brand: Yup.string().required("Brand is required"),
+        pharmacySKU: Yup.string().required("Pharmacy SKU is required"),
+        pharmacyCompany: Yup.string().required("Pharmacy Company is required"),
+        size: Yup.string().required("Size is required"),
+        UPC: Yup.string().required("UP is required"),
+      })
+    }
+    return Yup.object().shape({
+      name: Yup.string().required("Name is required"),
+      brand: Yup.string().required("Brand is required"),
+      pharmacySKU: Yup.string().required("Pharmacy SKU is required"),
+      size: Yup.string().required("Size is required"),
+      UPC: Yup.string().required("UP is required"),
+    })
+  }
 
   const onSubmit = (values) => {
-    const item = {
+    const itemData: ItemsType = {
       name: values?.name,
       brand: values?.brand,
       pharmacySKU: values?.pharmacySKU,
@@ -29,11 +55,17 @@ export const ItemsDetailsScreen = () => {
       size: values?.size,
       UPC: values?.UPC,
     }
-    dispatch(createItem(item))
+    if (!item) {
+      dispatch(createItem(itemData))
+    } else {
+      itemData.id = item?.id
+      dispatch(updateItem(itemData))
+    }
   }
   return (
     <View style={styles.container}>
       <Formik
+        innerRef={formikRef}
         initialValues={{
           name: "",
           brand: "",
@@ -43,7 +75,7 @@ export const ItemsDetailsScreen = () => {
           size: "",
           UPC: "",
         }}
-        validationSchema={validationSchema}
+        validationSchema={getValidationSchema}
         onSubmit={onSubmit}
       >
         {({ handleChange, handleSubmit, values, touched, errors }) => (
@@ -69,13 +101,15 @@ export const ItemsDetailsScreen = () => {
               onChangeText={handleChange("pharmacySKU")}
               {...{ touched, errors, fieldName: "pharmacySKU" }}
             />
-            <TextField
-              label="Pharma Company"
-              placeholder="Enter Company Name"
-              value={values.pharmacyCompany}
-              onChangeText={handleChange("pharmacyCompany")}
-              {...{ touched, errors, fieldName: "pharmacyCompany" }}
-            />
+            {!item && (
+              <TextField
+                label="Pharma Company"
+                placeholder="Enter Company Name"
+                value={values.pharmacyCompany}
+                onChangeText={handleChange("pharmacyCompany")}
+                {...{ touched, errors, fieldName: "pharmacyCompany" }}
+              />
+            )}
             <TextField
               label="Size"
               placeholder="Enter Size"
