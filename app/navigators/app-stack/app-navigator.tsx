@@ -1,6 +1,6 @@
 import * as React from "react"
 import { NavigatorScreenParams } from "@react-navigation/native"
-import { DemoScreen } from "../../screens"
+import { ItemsListScreen, OrderListScreen, SettingsScreen } from "../../screens"
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
 import FontAwesome from "react-native-vector-icons/FontAwesome"
 import Ionicons from "react-native-vector-icons/Ionicons"
@@ -31,7 +31,7 @@ export const AppStack = () => {
     >
       <Tab.Screen
         name="ItemRequest"
-        component={DemoScreen}
+        component={ItemsListScreen}
         options={{
           tabBarLabel: "Item Request",
           tabBarIcon: ({ focused }) => (
@@ -45,7 +45,7 @@ export const AppStack = () => {
       />
       <Tab.Screen
         name="Orders"
-        component={DemoScreen}
+        component={OrderListScreen}
         options={{
           tabBarLabel: "Orders",
           tabBarIcon: ({ focused }) => (
@@ -59,7 +59,7 @@ export const AppStack = () => {
       />
       <Tab.Screen
         name="Settings"
-        component={DemoScreen}
+        component={SettingsScreen}
         options={{
           tabBarLabel: "Settings",
           tabBarIcon: ({ focused }) => (

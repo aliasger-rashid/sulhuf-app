@@ -1,10 +1,10 @@
 import { StyleSheet, Text, View } from "react-native"
 import React from "react"
 
-export const OrderListScreen = () => {
+export const SettingsScreen = () => {
   return (
     <View>
-      <Text>OrderListScreen</Text>
+      <Text>SettingsScreen</Text>
     </View>
   )
 }
