@@ -10,3 +10,8 @@ export const UPDATE_ITEM = "UPDATE_ITEM"
 export const DELETE_ITEM = "DELETE_ITEM"
 export const GET_ITEM = "GET_ITEM"
 export const GET_ALL_ITEMS = "GET_ALL_ITEMS"
+
+export const GET_ALL_ORDERS = "GET_ALL_ORDERS"
+export const GET_ORDER_BY_FILTER = "GET_ORDER_BY_FILTER"
+export const GET_ORDER_COUNT = "GET_ORDER_COUNT"
+export const GET_ORDER_BY_ID = "GET_ORDER_BY_ID"

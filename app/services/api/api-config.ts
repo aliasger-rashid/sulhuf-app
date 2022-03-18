@@ -23,7 +23,7 @@ export interface ApiConfig {
  */
 export const DEFAULT_API_CONFIG: ApiConfig = {
   url: API_URL,
-  timeout: 10000,
+  timeout: 20000,
 }
 
 export const APIRoutes = {
@@ -31,4 +31,5 @@ export const APIRoutes = {
   Items: "item-requests",
   Orders: "orders",
   Upload: "upload",
+  OrderCount: "orders/count",
 }
