@@ -47,6 +47,8 @@ export const getAllItemsService = async (): Promise<any> => {
 
     if (!response.ok) {
       const problem: any = getGeneralApiProblem(response)
+      console.log({ response })
+
       toastWrapper(problem?.message)
       if (problem) return problem
     }

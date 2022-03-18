@@ -1,6 +1,6 @@
 import * as React from "react"
 import { NavigatorScreenParams } from "@react-navigation/native"
-import { OrderListScreen, SettingsScreen } from "../../screens"
+import { FileUploadScreen, OrderListScreen, SettingsScreen } from "../../screens"
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
 import FontAwesome from "react-native-vector-icons/FontAwesome"
 import Ionicons from "react-native-vector-icons/Ionicons"
@@ -15,6 +15,7 @@ export type HomeNavigatorParamList = {
 export type AppStackNavigatorParamList = {
   ItemRequest: NavigatorScreenParams<HomeNavigatorParamList>
   Orders: undefined
+  FileUpload: undefined
   Settings: undefined
 }
 const Tab = createBottomTabNavigator<AppStackNavigatorParamList>()
@@ -53,6 +54,20 @@ export const AppStack = () => {
           tabBarIcon: ({ focused }) => (
             <FontAwesome
               name="suitcase"
+              size={30}
+              color={focused ? color.primaryDarker : color.primary}
+            />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="FileUpload"
+        component={FileUploadScreen}
+        options={{
+          tabBarLabel: "File Upload",
+          tabBarIcon: ({ focused }) => (
+            <FontAwesome
+              name="upload"
               size={30}
               color={focused ? color.primaryDarker : color.primary}
             />
